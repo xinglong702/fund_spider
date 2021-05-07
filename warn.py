@@ -2,7 +2,7 @@ import xlrd
 import time
 
 # 设置初始日期和当前日期
-startDate = '2021-04-23'
+startDate = '2021-04-26'
 # 今日日期
 endDate = time.strftime('%Y-%m-%d')
 
@@ -19,7 +19,10 @@ def warn():
     startSheet = startBook.sheets()[0]
     startDict = dict(zip(startSheet.col_values(0, 1), startSheet.col_values(3, 1)))
 
-    endBook = xlrd.open_workbook(endPath)
+    try:
+        endBook = xlrd.open_workbook(endPath)
+    except Exception as e:
+        return warnList
     endSheet = endBook.sheets()[0]
     endDict = dict(zip(endSheet.col_values(0, 1), endSheet.col_values(3, 1)))
 
@@ -32,6 +35,10 @@ def warn():
             diff2 = (endNet - startNet) / startNet
             if diff1 > 0.1:
                 warnList.append(fund + '相对于' + startDate + '跌了' + str(round(diff1, 3) * 100) + '%')
+            if diff1 > 0.05:
+                warnList.append(fund + '相对于' + startDate + '跌了' + str(round(diff1, 3) * 100) + '%')
+            if diff2 > 0.1:
+                warnList.insert(0, '恭喜基金' + fund + '相对于' + startDate + '涨了' + str(round(diff2, 4) * 100) + '%')
             if diff2 > 0.2:
                 warnList.insert(0, '恭喜基金' + fund + '相对于' + startDate + '涨了' + str(round(diff2, 4) * 100) + '%')
     return warnList

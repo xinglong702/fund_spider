@@ -22,7 +22,7 @@ title = ['银河创新成长混合', '兴全合润混合(LOF)', '南方有色金
 # 正则模式
 findTitle = re.compile(r'<div class="fundDetail-tit"><div style="float: left">(.*?)<span>')
 findDate1 = re.compile(r'单位净值</a></span> \(</span>(.*?)\)</p>')
-findNet1 = re.compile(r'<span class="ui-font-large ui-color-red ui-num">(.*?)</span>')
+findNet1 = re.compile(r'<span class="ui-font-large ui-color-[a-z]+ ui-num">(.*?)<\/span>')
 findScale = re.compile(r'基金规模</a>：(.*?)</td>')
 
 # 基金名称单独获取
@@ -84,6 +84,7 @@ def getData(baseUrl):
             item = str(item)
             for find in findList:
                 data.append(re.findall(find, item)[0])
+        print(data)
         dataList.append(data)
         i = i + 1
     return dataList
