@@ -3,7 +3,7 @@ import time
 
 # 设置初始日期和当前日期
 startDate = '2021-04-26'
-startDate1 = '2012-5-12'
+startDate1 = '2021-05-12'
 # 今日日期
 endDate = time.strftime('%Y-%m-%d')
 

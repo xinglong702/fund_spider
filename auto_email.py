@@ -1,7 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
 
 msg_from = '1792962757@qq.com'
 msg_to = '1792962757@qq.com'
